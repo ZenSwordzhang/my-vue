@@ -56,32 +56,45 @@ module.exports = {
     //         .add('/Users/maybexia/Downloads/FE/community_built-in/src/lib')
     //         .end()
     // },
-    //
-    // // 配置高于chainWebpack中关于 css loader 的配置
-    // css: {
-    //     // 是否开启支持 foo.module.css 样式
-    //     requireModuleExtension: false,
-    //
-    //     // 是否使用 css 分离插件 ExtractTextPlugin，采用独立样式文件载入，不采用 <style> 方式内联至 html 文件中
-    //     extract: true,
-    //
-    //     // 是否构建样式地图，false 将提高构建速度
-    //     sourceMap: false,
-    //
-    //     // css预设器配置项
-    //     loaderOptions: {
-    //         css: {
-    //             // options here will be passed to css-loader
-    //         },
-    //
-    //         postcss: {
-    //             // options here will be passed to postcss-loader
-    //         }
-    //     }
-    // },
+
+    // 配置高于chainWebpack中关于 css loader 的配置
+    css: {
+        // 是否开启支持 foo.module.css 样式
+        requireModuleExtension: false,
+
+        // 是否使用 css 分离插件 ExtractTextPlugin，采用独立样式文件载入，不采用 <style> 方式内联至 html 文件中
+        extract: true,
+
+        // 是否构建样式地图，false 将提高构建速度
+        sourceMap: false,
+
+        // css预设器配置项
+        loaderOptions: {
+            css: {
+                // options here will be passed to css-loader
+            },
+
+            postcss: {
+                // options here will be passed to postcss-loader
+                // 添加插件
+                plugins: [
+                    // px转换为rem 需要cnpm i postcss-pxtorem -D
+                    require('postcss-pxtorem')({
+                        // 换算的基数
+                        rootValue: 100,
+                        // 忽略转换正则匹配项
+                        selectorBlackList: ['ab', 'bc'],
+                        propList: ['*'],
+                    }),
+                ]
+            }
+        }
+        // 启用 CSS modules for all css / pre-processor files.
+    },
 
     // All options for webpack-dev-server are supported
     // https://webpack.js.org/configuration/dev-server/
+    // 反向代理
     devServer: {
         open: true,
 
@@ -106,5 +119,7 @@ module.exports = {
     // pwa: {},
 
     // 第三方插件配置
-    pluginOptions: {}
+    pluginOptions: {
+
+    }
 };

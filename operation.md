@@ -53,7 +53,15 @@
     module.exports = {
         // 选项...
     }
-        
+
+# 安装axios
+* cnpm install axios -D      
+# 安装element-ui
+* cnpm i element-ui -S    
+# 安装加载器
+* cnpm install --save-dev css-loader style-loader postcss-loader autoprefixer 
+# 安装postcss-pxtorem
+cnpm i postcss-pxtorem -D
 
 # 命令帮助 
 * vue create --help
