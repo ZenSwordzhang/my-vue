@@ -30,7 +30,7 @@ module.exports = {
     // 默认情况下 babel-loader 忽略其中的所有文件 node_modules
     transpileDependencies: [],
 
-    // 生产环境 sourceMap
+    // 是否需要生产环境 sourceMap，默认为true
     productionSourceMap: false,
     //
     // // cors 相关 https://jakearchibald.com/2017/es-modules-in-browsers/#always-cors
@@ -96,6 +96,7 @@ module.exports = {
     // https://webpack.js.org/configuration/dev-server/
     // 反向代理
     devServer: {
+        // 配置自动启动浏览器
         open: true,
 
         host: '127.0.0.1',
@@ -103,10 +104,17 @@ module.exports = {
         port: 8000,
 
         https: false,
-
+        // 热更新
         hotOnly: false,
-
-        proxy: null,
+        // 配置跨域处理
+        proxy: {
+            "/api": {
+                target: "http://127.0.0.1:8080",
+                pathRewrite: {
+                    '^/api': '/mock'
+                }
+            }
+        },
 
         before: app => {
         }

@@ -54,14 +54,28 @@
         // 选项...
     }
 
+
+# [安装Vue 3.0组件API](https://github.com/vuejs/composition-api)
+cnpm install @vue/composition-api --save
 # 安装axios
 * cnpm install axios -D      
 # 安装element-ui
 * cnpm i element-ui -S    
 # 安装加载器
 * cnpm install --save-dev css-loader style-loader postcss-loader autoprefixer 
+## 安装sass-loader
+npm install -D sass-loader sass
+## 安装less-loader
+npm install -D less-loader less
+## 安装stylus-loader
+npm install -D stylus-loader stylus
 # 安装postcss-pxtorem
 cnpm i postcss-pxtorem -D
+# 安装node-sass
+cnpm install node-sass@latest
+
+
+
 
 # 命令帮助 
 * vue create --help
