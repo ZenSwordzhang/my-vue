@@ -19,19 +19,19 @@ module.exports = {
             template: "public/index.html",
             filename: "index.html"
         }
-    }
+    },
 
-    // // eslint-loader 是否在保存的时候检查
-    // lintOnSave: true,
-    //
-    // // 是否使用包含运行时编译器的Vue核心的构建
-    // runtimeCompiler: false,
-    //
-    // // 默认情况下 babel-loader 忽略其中的所有文件 node_modules
-    // transpileDependencies: [],
-    //
-    // // 生产环境 sourceMap
-    // productionSourceMap: false,
+    // eslint-loader 是否在保存的时候检查
+    lintOnSave: true,
+
+    // 是否使用包含运行时编译器的Vue核心的构建
+    runtimeCompiler: false,
+
+    // 默认情况下 babel-loader 忽略其中的所有文件 node_modules
+    transpileDependencies: [],
+
+    // 生产环境 sourceMap
+    productionSourceMap: false,
     //
     // // cors 相关 https://jakearchibald.com/2017/es-modules-in-browsers/#always-cors
     // // corsUseCredentials: false,
@@ -40,7 +40,7 @@ module.exports = {
     // configureWebpack: (config) => {
     // },
     //
-    // // webpack 链接 API，用于生成和修改 webapck 配置
+    // // webpack 链接 API，用于生成和修改 webpack 配置
     // // https://github.com/mozilla-neutrino/webpack-chain
     // chainWebpack: (config) => {
     //     // 因为是多页面，所以取消 chunks，每个页面只对应一个单独的 JS / CSS
@@ -79,31 +79,32 @@ module.exports = {
     //         }
     //     }
     // },
-    //
-    // // All options for webpack-dev-server are supported
-    // // https://webpack.js.org/configuration/dev-server/
-    // devServer: {
-    //     open: true,
-    //
-    //     host: '127.0.0.1',
-    //
-    //     port: 3000,
-    //
-    //     https: false,
-    //
-    //     hotOnly: false,
-    //
-    //     proxy: null,
-    //
-    //     before: app => {
-    //     }
-    // },
-    // // 构建时开启多进程处理 babel 编译
-    // parallel: require('os').cpus().length > 1,
-    //
+
+    // All options for webpack-dev-server are supported
+    // https://webpack.js.org/configuration/dev-server/
+    devServer: {
+        open: true,
+
+        host: '127.0.0.1',
+
+        port: 8000,
+
+        https: false,
+
+        hotOnly: false,
+
+        proxy: null,
+
+        before: app => {
+        }
+    },
+    // 构建时开启多进程处理 babel 编译
+    parallel: require('os').cpus().length > 1,
+
+    // // 仅在生产环境使用，不建议开发环境使用
     // // https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa
     // pwa: {},
-    //
-    // // 第三方插件配置
-    // pluginOptions: {}
+
+    // 第三方插件配置
+    pluginOptions: {}
 };
