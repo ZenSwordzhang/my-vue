@@ -2,10 +2,10 @@
 * npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 # 全局安装vue 
-* npm install -g @vue/cli
+* cnpm install -g @vue/cli
 
 # 局部安装vue 
-* npm install @vue/cli
+* cnpm install @vue/cli
 
 # 查看版本 
 * vue --version | vue -V
@@ -70,10 +70,12 @@ npm install -D less-loader less
 ## 安装stylus-loader
 npm install -D stylus-loader stylus
 # 安装postcss-pxtorem
-cnpm i postcss-pxtorem -D
+* cnpm i postcss-pxtorem -D
 # 安装node-sass
-cnpm install node-sass@latest
-
+* cnpm install node-sass@latest
+# 安装vue-apollo 和 graphql
+* cnpm install --save vue-apollo graphql apollo-boost
+* [操作指南](https://vue-apollo.netlify.com/zh-cn/guide/)
 
 
 

@@ -1,3 +1,9 @@
+const path = require('path')
+
+function resolve (dir) {
+    return path.join(__dirname, dir)
+}
+
 module.exports = {
 
     // 部署应用包时的基本 URL。用法和 webpack 本身的 output.publicPath 一致，
@@ -39,23 +45,32 @@ module.exports = {
     // // https://cli.vuejs.org/guide/webpack.html#simple-configuration
     // configureWebpack: (config) => {
     // },
-    //
-    // // webpack 链接 API，用于生成和修改 webpack 配置
-    // // https://github.com/mozilla-neutrino/webpack-chain
-    // chainWebpack: (config) => {
-    //     // 因为是多页面，所以取消 chunks，每个页面只对应一个单独的 JS / CSS
-    //     config.optimization
-    //         .splitChunks({
-    //             cacheGroups: {}
-    //         });
-    //
-    //     // 'src/lib' 目录下为外部库文件，不参与 eslint 检测
-    //     config.module
-    //         .rule('eslint')
-    //         .exclude
-    //         .add('/Users/maybexia/Downloads/FE/community_built-in/src/lib')
-    //         .end()
-    // },
+
+    // webpack 链接 API，用于生成和修改 webpack 配置
+    // https://github.com/mozilla-neutrino/webpack-chain
+    chainWebpack: (config) => {
+        // 别名设置
+        config.resolve.alias
+            .set('@', resolve('src'))
+            .set('assets',resolve('src/assets'))
+            .set('components',resolve('src/components'))
+            .set('layout',resolve('src/layout'))
+            .set('base',resolve('src/base'))
+            .set('static',resolve('src/static'))
+        // 因为是多页面，所以取消 chunks，每个页面只对应一个单独的 JS / CSS
+        config.optimization
+            .splitChunks({
+                cacheGroups: {}
+            });
+
+        // 'src/lib' 目录下为外部库文件，不参与 eslint 检测
+        config.module
+            .rule('eslint')
+            .exclude
+            // 此处需指定绝对路径
+            .add('/src/lib')
+            .end()
+    },
 
     // 配置高于chainWebpack中关于 css loader 的配置
     css: {
@@ -109,7 +124,7 @@ module.exports = {
         // 配置跨域处理
         proxy: {
             "/api": {
-                target: "http://127.0.0.1:8080",
+                target: "http://192.168.1.114:8080",
                 pathRewrite: {
                     '^/api': '/mock'
                 }
@@ -119,6 +134,7 @@ module.exports = {
         before: app => {
         }
     },
+
     // 构建时开启多进程处理 babel 编译
     parallel: require('os').cpus().length > 1,
 

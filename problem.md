@@ -1,6 +1,7 @@
 # 问题集合 
 ## 问题1：Error: No PostCSS Config found 
 ### 解决1：
+#### 方法1
 * 安装postcss-pxtorem
     * cnpm i postcss-pxtorem -D
 * vue.config.js中配置修改添加如下
@@ -21,7 +22,24 @@
     }  
 -------------------
 
+## 问题2：optional install error: Package require os(darwin) not compatible with your platform(win32)
+### 解决2：
+#### 方法1
+* cnpm rebuild node-sass
+#### 方法2
+* cnpm install node-sass
 
+## 问题3：ReferenceError: resolve is not defined
+### 解决3：
+#### 方法1
+* 在vue.config.js文件中添加
+-------------------
+    const path = require('path')
+    
+    function resolve (dir) {
+        return path.join(__dirname, dir)
+    }
+-------------------
 
 
 
