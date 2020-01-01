@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Router from '../router'
+import { Message } from "element-ui"
 
 axios.interceptors.request.use(
     config => {
@@ -23,6 +24,11 @@ axios.interceptors.response.use(
         return response;
     },
     error => {
+        Message({
+            message: error.message,
+            type: "error",
+            duration: 5000,
+        })
         return Promise.resolve(error.response);
     }
 );

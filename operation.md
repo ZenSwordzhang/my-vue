@@ -77,7 +77,7 @@ npm install -D stylus-loader stylus
 * cnpm install --save vue-apollo graphql apollo-boost
 * [操作指南](https://vue-apollo.netlify.com/zh-cn/guide/)
 
-
+#[登录页入口](http://localhost:8000/#/login)
 
 # 命令帮助 
 * vue create --help
