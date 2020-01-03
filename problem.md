@@ -40,6 +40,10 @@
         return path.join(__dirname, dir)
     }
 -------------------
-
+## 问题4：vue-cli-service' 不是内部或外部命令，也不是可运行的程序或批处理文件的报错
+### 解决4：
+#### 方法1
+* 重新运行npm install
+* 安装了淘宝镜像，可以运行cnpm install
 
 

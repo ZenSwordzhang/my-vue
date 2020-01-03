@@ -8,12 +8,10 @@ module.exports = {
 
     // 部署应用包时的基本 URL。用法和 webpack 本身的 output.publicPath 一致，
     // 但是 Vue CLI 在一些其他地方也需要用到这个值，所以请始终使用 publicPath 而不要直接修改 webpack 的 output.publicPath
-    publicPath: process.env.NODE_ENV === 'production'
-        ? '/production-sub-path/'
-        : '/',
+    publicPath: process.env.NODE_ENV === 'production' ? '/prod/' : '/',
 
     // 当运行 vue-cli-service build 时生成的生产环境构建文件的目录。注意目标目录在构建之前会被清除 (构建时传入 --no-clean 可关闭该行为)。
-    outputDir: 'dist',
+    outputDir: process.env.NODE_ENV === 'production'? 'prod_dist' : 'dev_dist',
     // 放置生成的静态资源(js、css、img、fonts)的(相对于 outputDir 的)目录
     assetsDir: 'static',
 
@@ -58,14 +56,18 @@ module.exports = {
     // webpack 链接 API，用于生成和修改 webpack 配置
     // https://github.com/mozilla-neutrino/webpack-chain
     chainWebpack: (config) => {
+        // 自动添加文件名后缀
+        config.extensions = ['.js', '.json', '.vue'];
         // 别名设置
         config.resolve.alias
-            .set('@', resolve('src'))
-            .set('assets',resolve('src/assets'))
-            .set('components',resolve('src/components'))
-            .set('layout',resolve('src/layout'))
-            .set('base',resolve('src/base'))
-            .set('static',resolve('src/static'))
+            .set('@', resolve('./src'))
+            .set('assets', resolve('./src/assets'))
+            .set('base', resolve('./src/base'))
+            .set('components', resolve('./src/components'))
+            .set('layout', resolve('./src/layout'))
+            .set('static', resolve('./src/static'))
+            .set('utils', resolve('./src/utils'))
+            .set('views', resolve('./src/views'));
         // 因为是多页面，所以取消 chunks，每个页面只对应一个单独的 JS / CSS
         config.optimization
             .splitChunks({
@@ -84,7 +86,7 @@ module.exports = {
     // 配置高于chainWebpack中关于 css loader 的配置
     css: {
         // 是否开启支持 foo.module.css 样式
-        requireModuleExtension: false,
+        // requireModuleExtension: false,
 
         // 是否使用 css 分离插件 ExtractTextPlugin，采用独立样式文件载入，不采用 <style> 方式内联至 html 文件中
         extract: true,
@@ -97,7 +99,9 @@ module.exports = {
             css: {
                 // options here will be passed to css-loader
             },
-
+            sass: {
+                data: `@import "./src/styles/main.scss";`
+            },
             postcss: {
                 // options here will be passed to postcss-loader
                 // 添加插件
