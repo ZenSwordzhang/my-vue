@@ -3,7 +3,7 @@ import Router from "vue-router";
 Vue.use(Router);
 
 // 引入布局组件
-import Layout from "../views/layout"
+import Layout from "views/layout/Index.vue";
 
 export default new Router({
     routes: [
@@ -22,7 +22,7 @@ export default new Router({
             meta: {
                 name: "登录"
             },
-            component: () => import("../views/login/Index.vue")
+            component: () => import("views/login/Index.vue")
         },
         {
             path: "/console",
@@ -40,7 +40,7 @@ export default new Router({
                     meta: {
                         name: "首页"
                     },
-                    component: () => import("../views/console/Index.vue")
+                    component: () => import("views/console/Index.vue")
                 }
             ]
         }
