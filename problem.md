@@ -46,4 +46,7 @@
 * 重新运行npm install
 * 安装了淘宝镜像，可以运行cnpm install
 
-
+## 问题4：Unknown custom element: <svg-icon> - did you register the component correctly? For recursive components, make sure to provide the "name" option.
+### 解决4：
+#### 方法1: 
+* 在src/main.js引入 import "./icons";

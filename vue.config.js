@@ -59,14 +59,15 @@ module.exports = {
     config.extensions = [".js", ".json", ".vue"];
     // 别名设置
     config.resolve.alias
-      .set("@", resolve("./src"))
-      .set("assets", resolve("./src/assets"))
-      .set("base", resolve("./src/base"))
-      .set("components", resolve("./src/components"))
-      .set("layout", resolve("./src/layout"))
-      .set("static", resolve("./src/static"))
-      .set("utils", resolve("./src/utils"))
-      .set("views", resolve("./src/views"));
+      // .set("@", resolve("./src"))
+      .set("@api", resolve("src/api"))
+      .set("assets", resolve("src/assets"))
+      .set("base", resolve("src/base"))
+      .set("components", resolve("src/components"))
+      .set("layout", resolve("src/layout"))
+      .set("static", resolve("src/static"))
+      .set("utils", resolve("src/utils"))
+      .set("views", resolve("src/views"));
     // 因为是多页面，所以取消 chunks，每个页面只对应一个单独的 JS / CSS
     config.optimization.splitChunks({
       cacheGroups: {}
@@ -78,6 +79,15 @@ module.exports = {
       .exclude // 此处需指定绝对路径
       .add("/src/lib")
       .end();
+
+    const svgRule = config.module.rule("svg");
+    svgRule.uses.clear();
+    svgRule.use("svg-sprite-loader")
+      .loader("svg-sprite-loader")
+      .options({
+        symbolId: "icon-[name]",
+        include: ["./src/icons"]
+      });
   },
 
   // 配置高于chainWebpack中关于 css loader 的配置
@@ -99,20 +109,20 @@ module.exports = {
       sass: {
         data: `@import "./src/styles/main.scss";`
       },
-      postcss: {
-        // options here will be passed to postcss-loader
-        // 添加插件
-        plugins: [
-          // px转换为rem 需要cnpm i postcss-pxtorem -D
-          require("postcss-pxtorem")({
-            // 换算的基数
-            rootValue: 100,
-            // 忽略转换正则匹配项
-            selectorBlackList: ["ab", "bc"],
-            propList: ["*"]
-          })
-        ]
-      }
+      // postcss: {
+      //   // options here will be passed to postcss-loader
+      //   // 添加插件
+      //   plugins: [
+      //     // px转换为rem 需要cnpm i postcss-pxtorem -D
+      //     require("postcss-pxtorem")({
+      //       // 换算的基数
+      //       rootValue: 100,
+      //       // 忽略转换正则匹配项
+      //       selectorBlackList: ["ab", "bc"],
+      //       propList: ["*"]
+      //     })
+      //   ]
+      // }
     }
     // 启用 CSS modules for all css / pre-processor files.
   },

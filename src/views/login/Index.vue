@@ -95,7 +95,7 @@
 <script>
 import sha1 from "js-sha1";
 import { Message } from "element-ui";
-import { GetSms, Register } from "@/api/login";
+import { GetSms, Register } from "@api/login";
 import { reactive, ref, onMounted } from "@vue/composition-api";
 import {
   stripScript,
@@ -140,7 +140,7 @@ export default {
       value = ruleForm.passwords;
       if (value === "") {
         callback(new Error("请再次输入密码"));
-      } else if (value != ruleForm.password) {
+      } else if (value !== ruleForm.password) {
         callback(new Error("重复密码不正确"));
       } else {
         callback();
@@ -217,13 +217,13 @@ export default {
       refs.loginForm.resetFields(); // 3.0
     };
     // 更新按钮状态
-    const updataButtonStatus = params => {
+    const updateButtonStatus = params => {
       codeButtonStatus.status = params.status;
       codeButtonStatus.text = params.text;
     };
     const getSms = () => {
       // 进行提示
-      if (ruleForm.username == "") {
+      if (ruleForm.username === "") {
         root.$message.error("邮箱不能为空！！");
         return false;
       }
@@ -237,7 +237,7 @@ export default {
         module: model.value
       };
       // 修改获取验证按钮状态
-      updataButtonStatus({
+      updateButtonStatus({
         status: true,
         text: "发送中"
       });
@@ -354,7 +354,7 @@ export default {
         time--;
         if (time === 0) {
           clearInterval(timer.value);
-          updataButtonStatus({
+          updateButtonStatus({
             status: false,
             text: "再次获取"
           });
@@ -368,7 +368,7 @@ export default {
      */
     const clearCountDown = () => {
       // 还原验证码按钮默认状态
-      updataButtonStatus({
+      updateButtonStatus({
         status: false,
         text: "获取验证码"
       });

@@ -1,3 +1,5 @@
+import { Login } from "@api/login";
+
 const state = {
   isCollapse: JSON.parse(sessionStorage.getItem("isCollapse")) || false
 };
@@ -19,8 +21,7 @@ const actions = {
   // 可以回调处理事情
   login(content, repuestData) {
     return new Promise((resolve, reject) => {
-      Login(repuestData)
-        .then(response => {
+      Login(repuestData).then(response => {
           resolve(response);
         })
         .catch(error => {
