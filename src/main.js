@@ -9,7 +9,7 @@ import "element-ui/lib/theme-chalk/index.css";
 Vue.config.productionTip = false;
 
 // 自定义全局组件
-import "./icons";
+import "icons";
 Vue.use(VueCompositionApi);
 Vue.use(ElementUI);
 

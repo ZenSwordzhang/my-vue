@@ -64,8 +64,10 @@ module.exports = {
       .set("assets", resolve("src/assets"))
       .set("base", resolve("src/base"))
       .set("components", resolve("src/components"))
+      .set("icons", resolve("src/icons"))
       .set("layout", resolve("src/layout"))
       .set("static", resolve("src/static"))
+      .set("styles", resolve("src/styles"))
       .set("utils", resolve("src/utils"))
       .set("views", resolve("src/views"));
     // 因为是多页面，所以取消 chunks，每个页面只对应一个单独的 JS / CSS

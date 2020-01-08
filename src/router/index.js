@@ -4,6 +4,7 @@ Vue.use(Router);
 
 // 引入布局组件
 import Layout from "views/layout/Index.vue";
+import ContentLayout from "views/layout/content/Index.vue";
 
 export default new Router({
   routes: [
@@ -23,6 +24,26 @@ export default new Router({
         name: "登录"
       },
       component: () => import("views/login/Index.vue")
+    },
+    {
+      path: "/content",
+      name: "Content",
+      redirect: "index",
+      meta: {
+        name: "菜单页",
+        icon: "console"
+      },
+      component: ContentLayout,
+      children: [
+        {
+          path: "/index",
+          name: "Index",
+          meta: {
+            name: "首页"
+          },
+          component: () => import("views/content/Index.vue")
+        }
+      ]
     },
     {
       path: "/console",

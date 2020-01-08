@@ -26,3 +26,9 @@ tree -I "node_modules"
 ### src/App.vue：应用的主要组件。
 ### src/assets：包含静态资源。
 ### src/components：包含应用的组件。
+
+## 加载顺序
+* src/main.js -> src/App.vue -> src/router/index.js
+
+
+
