@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="header-wrap">
         <el-menu
                 :default-active="activeIndex2"
                 class="el-menu-demo"
@@ -26,6 +26,16 @@
         </el-menu>
     </div>
 </template>
+<style scoped>
+    #header-wrap {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 205px;
+        height: 75px;
+        line-height: 75px;
+    }
+</style>
 <script>
     export default {
         setup() {
