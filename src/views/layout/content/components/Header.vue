@@ -24,16 +24,24 @@
             <el-menu-item index="3" disabled>消息中心</el-menu-item>
             <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
         </el-menu>
+        <div class="title"><label>账户管理->权限管理->工作组管理</label></div>
     </div>
 </template>
-<style scoped>
+<style lang="scss" scoped>
     #header-wrap {
         position: fixed;
         top: 0;
         right: 0;
         left: 205px;
-        height: 75px;
-        line-height: 75px;
+    }
+    .title {
+        height: 42px;
+        border-bottom: 1px solid;
+        line-height: 42px;
+        label {
+            font-size: 16px;
+            font-weight: bold;
+        }
     }
 </style>
 <script>

@@ -1,54 +1,66 @@
 <template>
-  <div id="main-wrap">
-    <div class="main-content">
-      <div class="content">
-        <router-view />
-      </div>
+    <div id="main-wrap">
+        <div class="content">
+          <div class="menu-content">
+            <el-row :gutter="20">
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <div style="margin-top: 15px;">
+                  <el-input placeholder="请输入内容" v-model="input3" class="input-with-select">
+                    <el-select v-model="select" slot="append" placeholder="请选择">
+                      <el-option label="餐厅名" value="1"></el-option>
+                      <el-option label="订单号" value="2"></el-option>
+                      <el-option label="用户电话" value="3"></el-option>
+                    </el-select>
+                    <el-button slot="append" icon="el-icon-search"></el-button>
+                  </el-input>
+                </div>
+              </div></el-col>
+              <el-col :span="16"><div class="grid-content bg-purple">
+                <el-row>
+                  <el-button>默认按钮</el-button>
+                  <el-button type="primary">主要按钮</el-button>
+                  <el-button type="success">成功按钮</el-button>
+                  <el-button type="info">信息按钮</el-button>
+                  <el-button type="warning">警告按钮</el-button>
+                  <el-button type="danger">危险按钮</el-button>
+                </el-row>
+              </div></el-col>
+            </el-row>
+          </div>
+            <div class="main-content">
+                <router-view/>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 <script>
-export default {
-  name: "layoutMain",
-  setup(props, { root }) {}
-};
+    export default {
+        name: "contentMain",
+        setup() {
+          return {
+            input3: '',
+            select: ''
+          }
+        }
+    };
 </script>
 <style lang="scss" scoped>
-@import "styles/config.scss";
-#main-wrap {
-  height: 100vh;
-  // position: fixed;
-  // left: $navMenu;
-  // top: 75px;
-  // right: 0;
-  // bottom: 0;
-  // border: 30px solid #f7f7f7;
-  // border-bottom: none;
-  // -webkit-box-sizing: border;
-}
-.main-content {
-  width: 100%;
-  height: 100%;
-  padding-top: $layoutHeader + 30;
-  padding-right: 30px;
-  @include webkit(box-sizing, border-box);
-  @include webkit(transition, all 0.3s ease 0s);
-}
-.open {
-  .main-content {
-    padding-left: $navMenu + 30;
-  }
-}
-.close {
-  .main-content {
-    padding-left: $navMenuMin + 30;
-  }
-}
-.content {
-  width: 100%;
-  height: 100%;
-  padding: 30px 30px 0 30px;
-  background-color: #fff;
-  @include webkit(box-sizing, border-box);
-}
+    @import "styles/content/common.scss";
+    #main-wrap {
+        position: absolute;
+        left: $navWidth;
+        top: $headerHeight;
+        right: 0;
+        bottom: 0;
+      .content {
+        padding: 0 15px;
+        .menu-content {
+          padding: 15px;
+        }
+        .main-content {
+          padding: 15px;
+        }
+      }
+    }
+
 </style>

@@ -71,14 +71,15 @@
         border-right: 1px solid;
     }
     #nav-title {
-        height: 61px;
+        height: $headerHeight;
         width: $navWidth;
         text-align: center;
-        line-height: 61px;
+        line-height: $headerHeight;
         border-bottom: 1px solid;
         label {
-            font-size: 16px;
+            font-size: 20px;
             font-weight: bold;
+            letter-spacing: 2px;
         }
     }
 </style>
