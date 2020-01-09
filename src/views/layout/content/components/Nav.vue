@@ -1,9 +1,9 @@
 <template>
     <div id="nav-wrap">
-        <div id="nav-title"><label>工作组管理</label></div>
-        <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-            <el-radio-button :label="false">展开</el-radio-button>
-            <el-radio-button :label="true">收起</el-radio-button>
+        <div class="nav-title"><label>工作组管理</label></div>
+        <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;" >
+            <el-radio-button :label="false" size="medium">展 开</el-radio-button>
+            <el-radio-button :label="true" size="medium">收 起</el-radio-button>
         </el-radio-group>
         <el-menu default-active="1-1-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
                  :collapse="isCollapse">
@@ -69,8 +69,17 @@
         height: 100vh;
         width: $navWidth;
         border-right: 1px solid;
+        .el-radio-group {
+            width: $navWidth;
+            .el-radio-button {
+                width: $navWidth/2;
+            }
+        }
+        .el-menu {
+            border-right: 1px solid;
+        }
     }
-    #nav-title {
+    .nav-title {
         height: $headerHeight;
         width: $navWidth;
         text-align: center;
