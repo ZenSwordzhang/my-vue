@@ -43,7 +43,7 @@
             </div>
             <div class="content-creation">
                 <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
-                    <el-form :model="formData">
+                    <el-form ref="formData" :model="formData">
                         <el-form-item label="活动名称" :label-width="formLabelWidth">
                             <el-input v-model="formData.name" autocomplete="off"></el-input>
                         </el-form-item>
@@ -72,16 +72,10 @@
         name: "contentMain",
         setup() {
             const dialogFormVisible = ref(false);
-            const formData = ()=> reactive([{
+            const formData = reactive({
                 name: "",
-                region: "",
-                date1: "",
-                date2: "",
-                delivery: false,
-                type: [],
-                resource: "",
-                desc: ""
-            }]);
+                region: ""
+            });
             const input3 = ref("");
             const select = ref("");
             const formLabelWidth = ref("120px");
