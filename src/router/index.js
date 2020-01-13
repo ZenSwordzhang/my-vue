@@ -5,6 +5,7 @@ Vue.use(Router);
 // 引入布局组件
 import Layout from "views/layout/Index.vue";
 import ContentLayout from "views/layout/content/Index.vue";
+import RoleLayout from "views/layout/management/role/Index.vue";
 
 export default new Router({
   routes: [
@@ -42,6 +43,26 @@ export default new Router({
             name: "首页"
           },
           component: () => import("views/content/Index.vue")
+        }
+      ]
+    },
+    {
+      path: "/management/role",
+      name: "RoleManagement",
+      redirect: "role",
+      meta: {
+        name: "角色管理",
+        icon: "role"
+      },
+      component: RoleLayout,
+      children: [
+        {
+          path: "/role",
+          name: "Role",
+          meta: {
+            name: "首页"
+          },
+          component: () => import("views/management/role/Index.vue")
         }
       ]
     },
