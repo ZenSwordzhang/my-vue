@@ -68,7 +68,32 @@
                     <el-row class="permission-title">
                         <el-button type="primary" round>分配权限</el-button>
                     </el-row>
-                    <el-row class="role-title">角色信息：</el-row>
+                    <el-row class="permission-content">
+                        <el-collapse v-model="activeNames" @change="handleChange">
+                            <el-collapse-item title="一致性 Consistency" name="1">
+                                <template>
+                                    <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+                                    <div style="margin: 15px 0;"></div>
+                                    <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange">
+                                        <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
+                                    </el-checkbox-group>
+                                </template>
+                            </el-collapse-item>
+                            <el-collapse-item title="反馈 Feedback" name="2">
+                                <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
+                                <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
+                            </el-collapse-item>
+                            <el-collapse-item title="效率 Efficiency" name="3">
+                                <div>简化流程：设计简洁直观的操作流程；</div>
+                                <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>
+                                <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
+                            </el-collapse-item>
+                            <el-collapse-item title="可控 Controllability" name="4">
+                                <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
+                                <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
+                            </el-collapse-item>
+                        </el-collapse>
+                    </el-row>
                 </div>
             </el-col>
         </el-row>
@@ -81,6 +106,12 @@
         setup() {
             const input3 = ref("");
             const select = ref("");
+            const activeNames = ref(['1']);
+            const cityOptions = ref(['上海', '北京', '广州', '深圳']);
+            let checkAll = false;
+            let checkedCities = ['上海', '北京'];
+            let cities = cityOptions;
+            let isIndeterminate = true;
             const tableData = reactive([{
                 id: 1,
                 username: '王小虎',
@@ -139,8 +170,21 @@
             const handleNodeClick = data => {
                 console.log(data);
             };
+            const handleChange = val=> {
+                console.log(val);
+            };
+            const handleCheckAllChange =(val)=> {
+                checkedCities = val ? cityOptions : [];
+                isIndeterminate = false;
+            };
+            const handleCheckedCitiesChange =(value)=> {
+                let checkedCount = value.length;
+                checkAll = checkedCount === this.cities.length;
+                isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
+            };
             return {
-                input3, select, tableData, data, defaultProps, handleNodeClick
+                input3, select, activeNames, cityOptions, checkAll, checkedCities, cities, isIndeterminate, tableData, data, defaultProps,
+                handleNodeClick, handleChange, handleCheckAllChange, handleCheckedCitiesChange
             };
         }
     }
@@ -205,19 +249,19 @@
             }
 
             .permission-info-bottom {
-                padding-top: 20px;
+                margin-top: 20px;
                 height: 65%;
 
                 .permission-title {
-                    padding-top: 10px;
-                    padding-bottom: 10px;
-                    height: 55px;
-
+                    height: 40px;
                     .el-button {
                         float: right;
-                        margin-top: 0;
                         margin-right: 20px;
                     }
+                }
+
+                .permission-content {
+                    margin-top: 10px;
                 }
             }
         }

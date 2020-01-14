@@ -22,9 +22,16 @@
                 </el-submenu>
             </el-submenu>
             <el-menu-item index="3" disabled>消息中心</el-menu-item>
-            <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+            <el-menu-item index="4"><a href="#" target="_blank">订单管理</a></el-menu-item>
         </el-menu>
-        <div class="title"><label>账户管理->权限管理->角色管理</label></div>
+        <div class="title">
+            <el-breadcrumb separator-class="el-icon-arrow-right">
+                <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                <el-breadcrumb-item>账户管理</el-breadcrumb-item>
+                <el-breadcrumb-item>权限管理</el-breadcrumb-item>
+                <el-breadcrumb-item>工作组管理</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -38,9 +45,8 @@
         height: 42px;
         border-bottom: 1px solid;
         line-height: 42px;
-        label {
-            font-size: 16px;
-            font-weight: bold;
+        .el-breadcrumb {
+            margin-left: 10px;
         }
     }
 </style>
